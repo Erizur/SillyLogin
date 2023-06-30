@@ -26,14 +26,12 @@ class ConnectionService(DataManager.OutputClass):
         try:
             state.statusLabel.setText(language.getLanString("attempting"))
             state.statusBar.setValue(50)
-            print(ran)
             if ran > 1:
                 c = requests.get('https://httpbin.org/basic-auth/' + user + '/' + passw, auth=(user, passw))
             else:
                 c = requests.get('https://httpbin.org/basic-auth/' + user + '/' + passw, auth=('nuh', 'uh'))
             state.statusLabel.setText(language.getLanString("verificating"))
             state.statusBar.setValue(80)
-            print(c.status_code)
             return c.status_code
         except Exception as err:
             state.generateConError(str(err))

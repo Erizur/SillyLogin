@@ -64,46 +64,30 @@ class Language():
 
 class SettingsManager(OutputClass):
     def __init__(self):
-        self.settingsExist = False
         self.currentLanguage = Language("None", None)
         self.allLanguages = []
         self.allOptions = {}
         self.loadDefaultSettings()
 
-    # def loadDefaultSettings(self):
-    #     try:
-    #         dire = 'translations' #languages directory.
-    #         translations = Path(dire).glob('*.json')
-    #         for translation in translations:
-    #             landata = open(translation, 'r')
-    #             lanjson = json.loads(landata.read())
-    #             self.allLanguages.append(Language(lanjson["language_name"], lanjson["language_strings"]))
-            
-    #         with open ('settings.json', 'wb') as file:
-    #             json_data = json.loads(file.read())
-    #         self.allOptions.clear()
-    #         for i in json_data:
-    #             data = json.loads(json.loads(i))
-    #             self.allOptions.append(Option(data["optionname"], data["value"]))
-    #     except:
-    #         self.log("No JSON data detected. Will NOT load previous settings (if any).")
-        
     def loadDefaultSettings(self):
-        dire = 'translations' #languages directory.
-        translations = Path(dire).glob('*.json')
-        self.allLanguages.clear()
-        for translation in translations:
-            landata = open(translation, 'r')
-            lanjson = json.loads(landata.read())
-            self.allLanguages.append(Language(lanjson["language_name"], lanjson["language_strings"]))
-            landata.close()
-                    
-        with open ('settings.json', 'r') as file:
-            json_data = json.loads(file.read())
-            self.allOptions.clear()
-            self.allOptions = json_data["options"]
-        
-        self.currentLanguage = self.allLanguages[self.allOptions["curlang"]]
+        try:
+            dire = 'translations' #languages directory.
+            translations = Path(dire).glob('*.json')
+            self.allLanguages.clear()
+            for translation in translations:
+                landata = open(translation, 'r')
+                lanjson = json.loads(landata.read())
+                self.allLanguages.append(Language(lanjson["language_name"], lanjson["language_strings"]))
+                landata.close()
+                        
+            with open ('settings.json', 'r') as file:
+                json_data = json.loads(file.read())
+                self.allOptions.clear()
+                self.allOptions = json_data["options"]
+            
+            self.currentLanguage = self.allLanguages[self.allOptions["curlang"]]
+        except:
+            self.log("No settings JSON detected. Will load default settings!")
     
     def saveDefaultSettings(self):
         dump = {

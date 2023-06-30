@@ -177,10 +177,14 @@ class ManageScreen(QtWidgets.QWidget):
         self.setWidGrid.addLayout(self.languageLay, 0, 0)
 
     def loadSettings(self):
+        #TODO: I have no other customizable settings yet. Planning to do something related to themes here.
         for i in setMan.allLanguages:
             self.languageDropdown.addItem(i.languageName, i)
-
-        
+        self.languageDropdown.setCurrentIndex(setMan.allOptions["curlang"])
+        self.languageDropdown.currentIndexChanged(self.changeLanguage)
+    
+    def changeLanguage(self):
+        setMan.allOptions["curlang"] = self.languageDropdown.currentIndex()
 
     def saveSettings(self):
         setMan.saveDefaultSettings()
