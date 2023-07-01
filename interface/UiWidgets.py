@@ -181,7 +181,7 @@ class ManageScreen(QtWidgets.QWidget):
         for i in setMan.allLanguages:
             self.languageDropdown.addItem(i.languageName, i)
         self.languageDropdown.setCurrentIndex(setMan.allOptions["curlang"])
-        self.languageDropdown.currentIndexChanged(self.changeLanguage)
+        self.languageDropdown.currentIndexChanged.connect(self.changeLanguage)
     
     def changeLanguage(self):
         setMan.allOptions["curlang"] = self.languageDropdown.currentIndex()
@@ -328,6 +328,7 @@ class ManageScreen(QtWidgets.QWidget):
         self.loadAccountList()
         self.clearFormBoxes()
         self.mainParent.loadAccountList()
+        self.accountList.setCurrentIndex(self.accountList.count() - 1)
 
     def removeSelectedAcc(self):
         accMan.allAccounts.remove(accMan.allAccounts[self.accountList.currentIndex()])
@@ -345,9 +346,10 @@ class ManageScreen(QtWidgets.QWidget):
     def updateSelectedAcc(self):
         accMan.allAccounts[self.accountList.currentIndex()] = AccountManager.UserAccount(self.emailBox.text(), self.userNameBox.text(), self.passwordBox.text())
         accMan.exportToJSON()
+        lastIdx = self.accountList.currentIndex()
         self.accountList.clear()
         self.loadAccountList()
-        self.clearFormBoxes()
+        self.accountList.setCurrentIndex(lastIdx)
         self.mainParent.loadAccountList()
         QtWidgets.QApplication.beep()
         self.doneDialog = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Icon.Information, 
