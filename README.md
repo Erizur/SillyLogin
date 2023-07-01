@@ -7,6 +7,7 @@
  - Add custom user pictures for every account
  - More translations aside from English
  - Moving the connection process to a thread to prevent app freezing.
+ - Add an example build. (PyInstaller)
 
 # Building
  The following project needs you to have Qt 6.5 installed. You will also need PySide6 installed.
