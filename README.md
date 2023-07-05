@@ -1,12 +1,11 @@
 # SillyLogin
- A login example made using PySide6 and several python libraries.
+ A login example made using PySide6 and several Python libraries.
  I'm taking suggestions for this example, so if you have any, feel free to contribute!
 
 # To do
  This project is still somewhat unfinished. There are some small features that haven't been implemented.
  - Add custom user pictures for every account
- - More translations aside from English
- - Moving the connection process to a thread to prevent app freezing.
+ - More translations aside from English and Spanish
  - Add an example build. (PyInstaller)
 
 # Building
