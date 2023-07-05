@@ -1,5 +1,6 @@
 {
     "options": {
-        "curlang": 0
+        "curlang": 0,
+        "nettest": true
     }
 }

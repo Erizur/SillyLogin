@@ -19,7 +19,7 @@ class MainLogin(QtWidgets.QWidget):
         self.setMaximumSize(w, h)
 
         self.manageWindow = None
-        self.testConnectionDialog()
+        if(setMan.allOptions['nettest'] == True): self.testConnectionDialog()
 
         self.defaultLayout = QtWidgets.QGridLayout(self)
         #self.defaultLayout.setContentsMargins(10,10,10,10)
@@ -169,12 +169,16 @@ class ManageScreen(QtWidgets.QWidget):
         self.languageLabel.setMaximumWidth(80)
         self.languageLabel.setText(language.getLanString("language_label"))
 
+        self.runNetTest = QtWidgets.QCheckBox(self.settingsWidget)
+        self.runNetTest.setText(language.getLanString("runtest_option"))
+
         self.loadSettings()
 
         self.languageLay.addWidget(self.languageLabel, 0, 0)
         self.languageLay.addWidget(self.languageDropdown, 0, 1, 1, -1)
 
         self.setWidGrid.addLayout(self.languageLay, 0, 0)
+        self.setWidGrid.addWidget(self.runNetTest, 1, 0, Qt.AlignmentFlag.AlignCenter)
 
     def loadSettings(self):
         #TODO: I have no other customizable settings yet. Planning to do something related to themes here.
@@ -182,11 +186,15 @@ class ManageScreen(QtWidgets.QWidget):
             self.languageDropdown.addItem(i.languageName, i)
         self.languageDropdown.setCurrentIndex(setMan.allOptions["curlang"])
         self.languageDropdown.currentIndexChanged.connect(self.changeLanguage)
+        self.runNetTest.setChecked(setMan.allOptions['nettest'])
     
     def changeLanguage(self):
         setMan.allOptions["curlang"] = self.languageDropdown.currentIndex()
 
     def saveSettings(self):
+        #non language options
+        setMan.allOptions["nettest"] = self.runNetTest.isChecked()
+
         setMan.saveDefaultSettings()
         self.close()
     

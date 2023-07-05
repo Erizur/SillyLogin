@@ -37,6 +37,7 @@
         "remove_confirm": "Remove this account?\n(You won't be able to use it again!)",
         "remove_done": "The account was successfully removed.",
         "show": "Show",
-        "new_acc": "New Account"
+        "new_acc": "New Account",
+        "runtest_option": "Run Connection Test on Startup"
     }
 }
