@@ -58,7 +58,7 @@ class Language():
     
     def getLanString(self, string):
         try:
-            return self.json_data[string]
+            return self.json_data[string].encode("cp1252").decode("utf-8")
         except:
             return "Translation error."
 

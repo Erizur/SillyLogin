@@ -34,7 +34,7 @@
         "addacc": "Add Account",
         "addacc_confirm": "Add this account?",
         "removeacc": "Remove Account",
-        "remove_confirm": "Remove this account?\n(You won't be able to use it again!)",
+        "remove_confirm": "Remove this account?\n(You won't be able to use it again, unless you add it back!)",
         "remove_done": "The account was successfully removed.",
         "show": "Show",
         "new_acc": "New Account",
