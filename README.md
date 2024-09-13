@@ -14,7 +14,7 @@
 
 # Modifying
  You are free to modify this project and use it in your own projects.
- The license used is the [GPL v3 license](LICENSE) as requested by Qt.
+ The license used is the [GPL v3 license](LICENSE) as requested by the QT Framework project.
 
  If you have any issue or problem, file an issue and I'll try to figure it out.
 
